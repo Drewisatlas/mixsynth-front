@@ -12,19 +12,9 @@ class BodyContainer extends React.Component {
     this.state = {
       synths: [],
       savedSynths: [],
-
-      viewMode: null,
       currentSynth: null,
 
     }
-  }
-
-  setView = (view) => {
-    this.setState ({
-      viewMode: "create"
-    })
-
-    console.log("view is changing to create mode")
   }
 
   loggedIn = () => {
@@ -33,7 +23,7 @@ class BodyContainer extends React.Component {
       <SynthListsContainer
       mySynths={this.state.synths}
       savesSynths={this.state.savedSynths}
-      setView={this.setView}/>
+      setView={this.props.setView}/>
       :
       <LoginContainer
       login={this.props.login}
@@ -41,11 +31,11 @@ class BodyContainer extends React.Component {
   }
 
   renderView = () => {
-    if (this.state.viewMode === "create") {
+    if (this.props.viewMode === "create") {
       return <SynthContainer />
-    } else if (this.state.viewMode === "edit"){
+    } else if (this.props.viewMode === "edit"){
       return <SynthContainer />
-    } else if (this.state.viewMode === null){
+    } else if (this.props.viewMode === null){
       return this.loggedIn()
     }
   }

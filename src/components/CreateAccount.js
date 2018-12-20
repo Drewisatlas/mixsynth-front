@@ -2,33 +2,47 @@ import React from 'react';
 
 class CreateAccount extends React.Component {
 
-  handleSubmit = () => {
-    this.props.login()
+  constructor () {
+    super()
+    this.state = {
+      username: '',
+      email: '',
+      password: ''
+    }
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    console.log(
+      `fetch posting:
+      ${this.state.name}`
+    )
+    // do login call back after and update username
+  }
+
+  handleChange = event => {
+    this.setState ({
+      [event.target.id]: event.target.value
+    })
+
   }
 
   render (){
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            First Name:
-            <input type="text" value="" onChange="" />
-          </label>
-          <label>
-            Last Name:
-            <input type="text" value="" onChange="" />
-          </label>
+        <label>
+          Username:
+          <input type="text" id="username"
+          value={this.state.username} onChange={this.handleChange} />
+        </label>
           <label>
             E-Mail:
-            <input type="text" value="" onChange="" />
-          </label>
-          <label>
-            Username:
-            <input type="text" value="" onChange="" />
+            <input type="text" value={this.state.email} onChange={this.handleChange} />
           </label>
           <label>
             Password:
-            <input type="text" value="" onChange="" />
+            <input type="text" value={this.state.password} onChange={this.handleChange} />
           </label>
           <input type="submit" value="Create Account" />
         </form>

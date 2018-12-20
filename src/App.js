@@ -10,10 +10,8 @@ class App extends Component {
     super()
     this.state = {
       user: 'drewisatlas',
-      synths: [],
-      savedSynths: [],
-      currentSynth: null,
-      loggedIn: true
+      loggedIn: true,
+      viewMode: null
     }
   }
 
@@ -27,6 +25,14 @@ class App extends Component {
     this.setState({
       loggedIn: true
     })
+  }
+
+  setView = (view) => {
+    this.setState ({
+      viewMode: "create"
+    })
+
+    console.log("view is changing to create mode")
   }
 
   updateUser = (username) => {
@@ -45,7 +51,10 @@ class App extends Component {
 
         <BodyContainer
         loggedIn={this.state.loggedIn}
-        login={this.login}/>
+        login={this.login}
+        updateUser={this.user}
+        viewMode={this.state.viewMode}
+        setView={this.setView}/>
 
       </div>
     );
