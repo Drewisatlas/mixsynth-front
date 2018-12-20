@@ -19,14 +19,6 @@ class BodyContainer extends React.Component {
     }
   }
 
-  viewRouter = () => {
-    if (this.state.viewMode === "create") {
-      return <SynthComponent />
-    } else if (this.state.viewMode === "edit"){
-      return <SynthComponent />
-    }
-  }
-
   setView = (view) => {
     this.setState ({
       viewMode: "create"
@@ -35,23 +27,34 @@ class BodyContainer extends React.Component {
     console.log("view is changing to create mode")
   }
 
-  render (){
-
+  loggedIn = () => {
     let isLoggedIn = this.props.loggedIn;
-    return (
-      <div>
-        {this.viewRouter()}
-        {isLoggedIn ?
-          <SynthListsContainer
-          mySynths={this.state.synths}
-          savesSynths={this.state.savedSynths}
-          setView={this.setView}/>
-          :
-          <LoginContainer
-          login={this.props.login}
-          updateUser = {this.props.login}/>
-        }
+    return isLoggedIn ?
+      <SynthListsContainer
+      mySynths={this.state.synths}
+      savesSynths={this.state.savedSynths}
+      setView={this.setView}/>
+      :
+      <LoginContainer
+      login={this.props.login}
+      updateUser = {this.props.login}/>
+  }
 
+  renderView = () => {
+    if (this.state.viewMode === "create") {
+      return <SynthComponent />
+    } else if (this.state.viewMode === "edit"){
+      return <SynthComponent />
+    } else if (this.state.viewMode === null){
+      return this.loggedIn()
+    }
+  }
+
+
+  render (){
+    return(
+      <div>
+      {this.renderView()}
       </div>
     )
   }

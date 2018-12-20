@@ -15,6 +15,7 @@ class SynthComponent extends React.Component {
   render (){
     return (
       <div>
+      here we make a synth
       </div>
     )
   }
