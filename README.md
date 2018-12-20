@@ -1,3 +1,22 @@
+Mixsynth
+
+Mixsynth is a basic synthesizer application.
+Builds synths off the the Web Audio Api.
+
+Skateboard
+Users can create, use, update and delete their synthesizers.
+Any User can use any synthesizer saved to the web app.
+Synths can be played by clicking a keyboard on the screen or with key down controls.
+
+Stretch features
+mixing more than one synthesizer
+multiple octaves
+Synths can be played with  key down controls or midi.
+Working authentication and authorization.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
