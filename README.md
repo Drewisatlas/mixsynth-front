@@ -4,11 +4,14 @@ Mixsynth is a basic synthesizer application.
 Builds synths off the the Web Audio Api.
 
 Skateboard
+#Users can Login and logout# (need authentication a db pull)
 Users can create, use, update and delete their synthesizers.
 Any User can use any synthesizer saved to the web app.
 Synths can be played by clicking a keyboard on the screen or with key down controls.
 
 Stretch features
+Users can create an account
+search functionality
 mixing more than one synthesizer
 multiple octaves
 Synths can be played with  key down controls or midi.

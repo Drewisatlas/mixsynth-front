@@ -2,11 +2,23 @@ import React from 'react';
 
 class SynthListsContainer extends React.Component {
 
+  createClickHandler = (event) => {
+    event.preventDefault();
+    return this.props.setView('create')
+  }
+
   render (){
     return (
+      <React.Fragment>
       <div>
-        My Synths                 | Favorite Synths
+        <div onClick={this.createClickHandler}>Create</div> //loads a blank synth component on load
+        <div>Search</div>
       </div>
+      <div>
+        <div>My Synths </div> //loads a list of synthesizers, on click loads the selected synthesizer with saved presets
+        <div>Favorite Synths</div> //loads a list of liked synthesizers, on click loads the selected synthesizer with saved presets
+      </div>
+      </React.Fragment>
     )
   }
 }
