@@ -42,9 +42,9 @@ class BodyContainer extends React.Component {
 
   renderView = () => {
     if (this.state.viewMode === "create") {
-      return <SynthComponent />
+      return <SynthContainer />
     } else if (this.state.viewMode === "edit"){
-      return <SynthComponent />
+      return <SynthContainer />
     } else if (this.state.viewMode === null){
       return this.loggedIn()
     }
