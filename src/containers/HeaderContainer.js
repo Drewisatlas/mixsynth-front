@@ -3,11 +3,11 @@ import { Header, IMAGE } from 'semantic-ui-react'
 
 class HeaderContainer extends React.Component {
 
-  loginLogout = () => {
-    if (this.props.loggedIn === true) {
-      return
-    }
-  }
+  // loginLogout = () => {
+  //   if (this.props.loggedIn === true) {
+  //     return
+  //   }
+  // }
 
   render (){
     const isLoggedIn = this.props.loggedIn;

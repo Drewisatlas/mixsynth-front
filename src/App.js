@@ -9,12 +9,14 @@ class App extends Component {
   constructor (){
     super()
     this.state = {
-      user: 'drewisatlas',
-      loggedIn: true,
+      allUsers: [],
+      currentUser: 'drewisatlas',
+      loggedIn: false,
       viewMode: null
     }
   }
 
+//Login callback functions to change state //
   logout = () => {
     this.setState({
       loggedIn: false
@@ -27,6 +29,7 @@ class App extends Component {
     })
   }
 
+//View call back function //
   setView = (view) => {
     this.setState ({
       viewMode: "create"
@@ -37,8 +40,19 @@ class App extends Component {
 
   updateUser = (username) => {
     this.setState({
-      user: username
+      currentUser: username
     })
+  }
+
+// Fetches all users
+  componentDidMount() {
+    fetch('http://localhost:3000/users/')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          allUsers: data
+        })
+      })
   }
 
   render() {
@@ -46,7 +60,7 @@ class App extends Component {
       <div>
         <HeaderContainer
         loggedIn={this.state.loggedIn}
-        user={this.state.user}
+        user={this.state.currentUser}
         logout={this.logout}/>
 
         <BodyContainer

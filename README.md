@@ -6,10 +6,11 @@ Builds synths off the the Web Audio Api.
 Skateboard
 #Users can Login and logout# (need authentication a db pull)
 #Users can create a synth# (need to add filtering, and effects)
+#database has been built out just need to populate it
 
 Users can play synths with a virtual keyboard
 Users can edit their synthesizers.
-Users can delete their synthesizers
+Users can delete their synthesizers.
 Any User can use any synthesizer saved to the web app.
 Synths can be played by clicking a keyboard on the screen or with key down controls.
 Waveforms can be filtered

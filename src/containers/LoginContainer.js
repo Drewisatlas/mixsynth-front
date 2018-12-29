@@ -9,7 +9,9 @@ class LoginContainer extends React.Component {
       <div>
         <div>
           <Login
-          login={this.props.login}/>
+          login={this.props.login}
+          updateUser={this.props.updateUser}
+          />
         </div>
         <div>
           <CreateAccount

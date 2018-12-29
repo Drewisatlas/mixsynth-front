@@ -40,6 +40,31 @@ class BodyContainer extends React.Component {
     }
   }
 
+  fetchAllSynths = () => {
+    fetch('http://localhost:3000/synthesizers')
+      .then(response => response.json())
+      .then(data => {
+        this.setState ({
+          savedSynths: data
+        })
+      })
+  }
+
+  fetchAllSavedSynths = () => {
+    fetch('http://localhost:3000/user_synthesizers')
+      .then(response => response.json())
+      .then(data => {
+        this.setState ({
+          synths: data
+        })
+      })
+  }
+
+
+  componentDidMount () {
+    this.fetchAllSynths()
+  }
+
 
   render (){
     return(
