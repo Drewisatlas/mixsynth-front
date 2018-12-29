@@ -21,7 +21,7 @@ class HeaderContainer extends React.Component {
       <div>
         <div> MixSynth </div>
         {isLoggedIn?
-          <div> Hello {this.props.user.username} {logout} </div>
+          <div> Hello {this.props.currentUser.username} {logout} </div>
           :
           null
         }

@@ -41,11 +41,12 @@ class App extends Component {
   }
 
   updateUser = (username) => {
+    debugger
     let user = this.state.allUsers.find(user => {
       return user.username === username
     })
     this.setState({
-      currentUser: username
+      currentUser: user
     })
   }
 
@@ -65,7 +66,7 @@ class App extends Component {
       <div>
         <HeaderContainer
         loggedIn={this.state.loggedIn}
-        user={this.state.currentUser}
+        currentUser={this.state.currentUser}
         logout={this.logout}/>
 
         <BodyContainer
