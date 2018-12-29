@@ -21,8 +21,9 @@ class BodyContainer extends React.Component {
     let isLoggedIn = this.props.loggedIn;
     return isLoggedIn ?
       <SynthListsContainer
+      currentUser={this.props.currentUser}
       mySynths={this.state.synths}
-      savesSynths={this.state.savedSynths}
+      savedSynths={this.state.savedSynths}
       setView={this.props.setView}/>
       :
       <LoginContainer

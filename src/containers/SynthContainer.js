@@ -7,10 +7,10 @@ class SynthContainer extends React.Component {
 
   render (){
     return (
-      <div>
+      <React.Fragment>
         <SynthComponent />
         <KeyboardComponent />
-      </div>
+      </React.Fragment>
     )
   }
 }

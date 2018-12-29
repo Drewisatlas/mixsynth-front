@@ -41,7 +41,6 @@ class App extends Component {
   }
 
   updateUser = (username) => {
-    debugger
     let user = this.state.allUsers.find(user => {
       return user.username === username
     })
@@ -72,6 +71,7 @@ class App extends Component {
         <BodyContainer
         loggedIn={this.state.loggedIn}
         login={this.login}
+        currentUser={this.state.currentUser}
         updateUser={this.updateUser}
         viewMode={this.state.viewMode}
         setView={this.setView}/>

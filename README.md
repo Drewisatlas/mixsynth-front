@@ -7,18 +7,32 @@ Skateboard
 #Users can Login and logout# (need authentication a db pull)
 #Users can create a synth# (need to add filtering, and effects)
 #database has been built out just need to populate it
+#All users are loaded upon start of application
+#All synths are loaded at start of app
+#All saved synths are loaded at start of app
+
+logging in loads up synths
+- user synths and saved synths
+- clicking on a synth loads that synth with presets
+- Users can edit their synthesizers.
+- Users can delete their synthesizers.
+- favorited synths can not be edited.
+
+navigation and urls
 
 Users can play synths with a virtual keyboard
-Users can edit their synthesizers.
-Users can delete their synthesizers.
-Any User can use any synthesizer saved to the web app.
+
+
 Synths can be played by clicking a keyboard on the screen or with key down controls.
+
 Waveforms can be filtered
+
 synths can have effects
 
 Stretch features
 
 Users can create an account
+- creating an account adds a new user to the database
 search functionality
 search is ranked by synths that have the most likes.
 mixing more than one synthesizer
