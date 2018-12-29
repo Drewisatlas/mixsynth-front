@@ -16,10 +16,16 @@ class Login extends React.Component {
     })
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.login();
+    this.props.updateUser(this.state.existUsername)
+  }
+
   render (){
     return (
       <div>
-        <form onSubmit={this.props.login}>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Username:
             <input type="text" id="existUsername"

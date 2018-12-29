@@ -10,16 +10,17 @@ class App extends Component {
     super()
     this.state = {
       allUsers: [],
-      currentUser: 'drewisatlas',
+      currentUser: {},
       loggedIn: false,
-      viewMode: null
+      viewMode: "main"
     }
   }
 
 //Login callback functions to change state //
   logout = () => {
     this.setState({
-      loggedIn: false
+      loggedIn: false,
+      viewMode: "main"
     })
   }
 
@@ -30,6 +31,7 @@ class App extends Component {
   }
 
 //View call back function //
+
   setView = (view) => {
     this.setState ({
       viewMode: "create"
@@ -39,6 +41,9 @@ class App extends Component {
   }
 
   updateUser = (username) => {
+    let user = this.state.allUsers.find(user => {
+      return user.username === username
+    })
     this.setState({
       currentUser: username
     })
@@ -66,7 +71,7 @@ class App extends Component {
         <BodyContainer
         loggedIn={this.state.loggedIn}
         login={this.login}
-        updateUser={this.user}
+        updateUser={this.updateUser}
         viewMode={this.state.viewMode}
         setView={this.setView}/>
 

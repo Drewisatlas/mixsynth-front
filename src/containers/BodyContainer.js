@@ -27,7 +27,7 @@ class BodyContainer extends React.Component {
       :
       <LoginContainer
       login={this.props.login}
-      updateUser = {this.props.login}/>
+      updateUser = {this.props.updateUser}/>
   }
 
   renderView = () => {
@@ -35,7 +35,7 @@ class BodyContainer extends React.Component {
       return <SynthContainer />
     } else if (this.props.viewMode === "edit"){
       return <SynthContainer />
-    } else if (this.props.viewMode === null){
+    } else if (this.props.viewMode === "main"){
       return this.loggedIn()
     }
   }
@@ -45,7 +45,7 @@ class BodyContainer extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState ({
-          savedSynths: data
+          synths: data
         })
       })
   }
@@ -55,14 +55,15 @@ class BodyContainer extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState ({
-          synths: data
+          savedSynths: data
         })
       })
   }
 
 
   componentDidMount () {
-    this.fetchAllSynths()
+    this.fetchAllSynths();
+    this.fetchAllSavedSynths();
   }
 
 
