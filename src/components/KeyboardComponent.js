@@ -1,29 +1,29 @@
 import React from 'react';
-import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
+import {Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
 import '../customPianoStyles.css';
 
 const KeyboardComponent = props => {
 
-  const firstNote = MidiNumbers.fromNote('c3');
-  const lastNote = MidiNumbers.fromNote('f5');
+  const noteRange = {
+    first: MidiNumbers.fromNote('c3'),
+    last: MidiNumbers.fromNote('f5'),
+  }
   const keyboardShortcuts = KeyboardShortcuts.create({
-      firstNote: firstNote,
-      lastNote: lastNote,
+      firstNote: noteRange.first,
+      lastNote: noteRange.last,
       keyboardConfig: KeyboardShortcuts.HOME_ROW,
   });
 
   return (
     <Piano
-      noteRange={{ first: firstNote, last: lastNote }}
+      noteRange={noteRange}
+      width={700}
       playNote={(midiNumber) => {
-        // Play a given note - see notes below
       }}
       stopNote={(midiNumber) => {
-        // Stop playing a given note - see notes below
       }}
-      keyboardShortcuts={keyboardShortcuts}
-    />
+      keyboardShortcuts={keyboardShortcuts} />
   );
 }
 
