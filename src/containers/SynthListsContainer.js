@@ -8,7 +8,7 @@ class SynthListsContainer extends React.Component {
   }
 
   findUserSynths = () => {
-    return this.props.mySynths.filter( synth => {
+    return this.props.allSynths.filter( synth => {
        return synth.user_id === this.props.currentUser.id;
     })
   }

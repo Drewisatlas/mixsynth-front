@@ -10,7 +10,7 @@ class BodyContainer extends React.Component {
   constructor () {
     super()
     this.state = {
-      synths: [],
+      allSynths: [],
       savedSynths: [],
       currentSynth: null,
 
@@ -22,7 +22,7 @@ class BodyContainer extends React.Component {
     return isLoggedIn ?
       <SynthListsContainer
       currentUser={this.props.currentUser}
-      mySynths={this.state.synths}
+      allSynths={this.state.allSynths}
       savedSynths={this.state.savedSynths}
       setView={this.props.setView}/>
       :
@@ -46,7 +46,7 @@ class BodyContainer extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState ({
-          synths: data
+          allSynths: data
         })
       })
   }
