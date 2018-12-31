@@ -1,5 +1,6 @@
 import React from 'react';
 import KeyboardComponent from '../components/KeyboardComponent.js';
+var ADSR = require('adsr')
 
 class SynthContainer extends React.Component {
 
@@ -37,21 +38,43 @@ class SynthContainer extends React.Component {
     )
   }
 
+
+  closeContext = (context) => {
+    context.close()
+  }
+
   buildAudioContext = () => {
     const AudioContext = window.AudioContext || window.webkitAudioContext; // for legacy browsers
-    var mySynth = new AudioContext()
-    //create gain node
-    let gainNode = mySynth.createGain()
-    gainNode.gain.value = this.state.gain
-    //createOscillator
-    let osc1 = mySynth.createOscillator()
+
+    let mySynth = new AudioContext() // creates a new audio context
+
+    let osc1 = mySynth.createOscillator() //createOscillator
+
     osc1.frequency.value = this.state.frequency
     osc1.type = this.state.oscillator
     osc1.detune.value = 0
+
+    let gainNode = mySynth.createGain() //create gain node
     osc1.connect(gainNode)
-    //connect oscillator to gainNode
     gainNode.connect(mySynth.destination)
-    osc1.start()
+    gainNode.gain.value = this.state.gain
+
+    let envelopeModulator = ADSR(mySynth)
+    envelopeModulator.connect(gainNode.gain)
+
+    envelopeModulator.attack = 0.01 // seconds
+    envelopeModulator.decay = 0.4 // seconds
+    envelopeModulator.sustain = 0.6 // multiply gain.gain.value
+    envelopeModulator.release = 0.4 // seconds
+
+    envelopeModulator.value.value = 2 // value is an AudioParam
+
+    envelopeModulator.start(mySynth.currentTime)
+    osc1.start(mySynth.currentTime)
+
+    let stopAt = envelopeModulator.stop(mySynth.currentTime + 1)
+    osc1.stop(stopAt)
+
   }
 
   playNote = (midiNumber) => {
@@ -64,9 +87,6 @@ class SynthContainer extends React.Component {
   }
 
   stopNote = (midiNumber) => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext; // for legacy browsers
-    var mySynth = new AudioContext()
-    mySynth.close()
   }
 
 
