@@ -3,7 +3,7 @@ import LoginContainer from './LoginContainer.js';
 import SynthListsContainer from './SynthListsContainer.js';
 import SearchContainer from './SearchContainer.js';
 import SynthContainer from './SynthContainer.js';
-import SynthComponent from '../components/SynthComponent.js';
+
 
 class BodyContainer extends React.Component {
 

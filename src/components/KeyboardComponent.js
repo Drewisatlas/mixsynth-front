@@ -15,11 +15,13 @@ const KeyboardComponent = props => {
       keyboardConfig: KeyboardShortcuts.HOME_ROW,
   });
 
+
   return (
     <Piano
       noteRange={noteRange}
       width={700}
       playNote={(midiNumber) => {
+        props.getNote(midiNumber)
       }}
       stopNote={(midiNumber) => {
       }}
