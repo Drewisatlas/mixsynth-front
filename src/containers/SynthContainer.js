@@ -10,8 +10,8 @@ class SynthContainer extends React.Component {
       creator: "username",
       oscillator: "sine",
       gain: 0.5,
-      frequency: 200,
-      audioContext: null
+      frequency: 0,
+      activeAudioNodes: {}
     }
   }
 
@@ -37,37 +37,44 @@ class SynthContainer extends React.Component {
     )
   }
 
-  getNote = (midiNumber) => {
-    let frequency = 440 * Math.pow(2,(midiNumber-69)/12);
-    console.log(`midi note:${midiNumber}, ${frequency} hz`);
-    this.setState ({
-      frequency: frequency
-    })
-  }
-
   buildAudioContext = () => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext // for legacy browsers
-    const mySynth = new AudioContext()
+    const AudioContext = window.AudioContext || window.webkitAudioContext; // for legacy browsers
+    var mySynth = new AudioContext()
     //create gain node
     let gainNode = mySynth.createGain()
     gainNode.gain.value = this.state.gain
-
     //createOscillator
     let osc1 = mySynth.createOscillator()
     osc1.frequency.value = this.state.frequency
     osc1.type = this.state.oscillator
     osc1.detune.value = 0
-
     osc1.connect(gainNode)
     //connect oscillator to gainNode
     gainNode.connect(mySynth.destination)
-
     osc1.start()
+  }
+
+  playNote = (midiNumber) => {
+    let frequency = 440 * Math.pow(2,(midiNumber-69)/12);
+    console.log(`midi note:${midiNumber}, ${frequency} hz`);
+    this.setState ({
+      frequency: frequency
+    })
+    this.buildAudioContext()
+  }
+
+  stopNote = (midiNumber) => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext; // for legacy browsers
+    var mySynth = new AudioContext()
+    mySynth.close()
   }
 
 
 
+
+
   componentDidMount () {
+
   }
 
 
@@ -98,7 +105,8 @@ class SynthContainer extends React.Component {
           </form>
         </div>
         <KeyboardComponent
-          getNote={this.getNote}
+          playNote={this.playNote}
+          stopNote={this.stopNote}
         />
       </React.Fragment>
     )

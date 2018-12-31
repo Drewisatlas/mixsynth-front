@@ -21,9 +21,10 @@ const KeyboardComponent = props => {
       noteRange={noteRange}
       width={700}
       playNote={(midiNumber) => {
-        props.getNote(midiNumber)
+        props.playNote(midiNumber)
       }}
       stopNote={(midiNumber) => {
+        props.stopNote(midiNumber)
       }}
       keyboardShortcuts={keyboardShortcuts} />
   );
