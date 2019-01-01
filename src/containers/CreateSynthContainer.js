@@ -4,7 +4,7 @@ import SynthComponent from '../components/SynthComponent.js';
 import Envelope from 'envelope-generator';
 
 
-class SynthContainer extends React.Component {
+class CreateSynthContainer extends React.Component {
 
   constructor () {
     super()
@@ -133,4 +133,4 @@ class SynthContainer extends React.Component {
   }
 }
 
-export default SynthContainer
+export default CreateSynthContainer

@@ -29,15 +29,29 @@ class App extends Component {
     })
   }
 
-//View call back function //
+//View call back functions //
 
-  setView = (view) => {
+  setViewCreate = () => {
     this.setState ({
       viewMode: "create"
     })
-
     console.log("view is changing to create mode")
   }
+
+  setViewUserSynths = () => {
+    this.setState ({
+      viewMode: "main"
+    })
+    console.log("view is changing to show user synths")
+  }
+
+  setViewSearchSynths = () => {
+    this.setState ({
+      viewMode: "search"
+    })
+    console.log("view is changing to Search for Synths")
+  }
+
 
   updateUser = (username) => {
     let user = this.state.allUsers.find(user => {
@@ -65,7 +79,11 @@ class App extends Component {
         <HeaderContainer
         loggedIn={this.state.loggedIn}
         currentUser={this.state.currentUser}
-        logout={this.logout}/>
+        logout={this.logout}
+        setViewCreate={this.setViewCreate}
+        setViewMySynths={this.setViewUserSynths}
+        setViewSearchSynths={this.setViewSearchSynths}
+        />
 
         <BodyContainer
         loggedIn={this.state.loggedIn}
@@ -73,7 +91,7 @@ class App extends Component {
         currentUser={this.state.currentUser}
         updateUser={this.updateUser}
         viewMode={this.state.viewMode}
-        setView={this.setView}/>
+        />
 
       </div>
     );

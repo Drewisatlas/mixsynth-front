@@ -11,6 +11,8 @@ Requirements
 # three resources (synths, users, saved synths)
 full crud for synthesizers
 -create
+# create container made
+Save synth button posts to synthesizer
 -read
 -update
 -delete

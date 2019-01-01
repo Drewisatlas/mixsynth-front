@@ -2,7 +2,8 @@ import React from 'react';
 import LoginContainer from './LoginContainer.js';
 import SynthListsContainer from './SynthListsContainer.js';
 import SearchContainer from './SearchContainer.js';
-import SynthContainer from './SynthContainer.js';
+import CreateSynthContainer from './CreateSynthContainer.js';
+import EditSynthContainer from './EditSynthContainer.js';
 import {Route} from 'react-router-dom';
 
 
@@ -37,9 +38,9 @@ class BodyContainer extends React.Component {
 
   renderView = () => {
     if (this.props.viewMode === "create") {
-      return <SynthContainer />
+      return <Route path={'/create'} component ={CreateSynthContainer} />
     } else if (this.props.viewMode === "edit"){
-      return <SynthContainer />
+      return <EditSynthContainer />
     } else if (this.props.viewMode === "main"){
       return this.loggedIn()
     }

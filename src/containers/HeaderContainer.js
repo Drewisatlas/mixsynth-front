@@ -25,8 +25,9 @@ class HeaderContainer extends React.Component {
           <React.Fragment>
           <div>
             <div> Hello {this.props.currentUser.username} </div>
-            <NavLink to="/user"> My Synths </NavLink>
-            <NavLink to="/create"> Create </NavLink>
+            <NavLink to="/user" onClick={this.props.setViewMySynths}> My Synths </NavLink>
+            <NavLink to="/create" onClick={this.props.setViewCreate}> Create </NavLink>
+            <NavLink to="/synthesizers" onClick={this.props.setViewSearchSynths}> Search </NavLink>
             <div> {logout} </div>
           </div>
           </React.Fragment>
