@@ -3,6 +3,21 @@ Mixsynth
 Mixsynth is a basic synthesizer application.
 Builds synths off the the Web Audio Api.
 
+
+
+Requirements
+
+# Rails API backend
+# three resources (synths, users, saved synths)
+full crud for synthesizers
+-create
+-read
+-update
+-delete
+two different client side routes minimum (react router)
+
+
+
 Skateboard
 #Users can Login and logout# (need authentication a db pull)
 #Users can create a synth# (need to add filtering, and effects)
@@ -12,12 +27,13 @@ Skateboard
 #All saved synths are loaded at start of app
 #Users can play synths with a virtual keyboard
 #Synths can be played by clicking a keyboard
- - enable a toggle for on the screen or with key controls or remove it
+#enable a toggle for on the screen or with key controls or remove it
+#Waveforms can be filtered
 
 
 
-logging in loads up synths
-- user synths and saved synths
+# logging in loads up a list of synths
+# user synths and saved synths
 - clicking on a synth loads that synth with presets
 - Users can edit their synthesizers.
 - Users can delete their synthesizers.
@@ -25,20 +41,23 @@ logging in loads up synths
 
 navigation and urls
 
+DB management
+- creating an account adds a new user to the database
+search functionality
+-users can save a synth they created
+-users can edit
 
 
 
 
 
-Waveforms can be filtered
 
 synths can have effects
 
 Stretch features
 
 Users can create an account
-- creating an account adds a new user to the database
-search functionality
+
 search is ranked by synths that have the most likes.
 mixing more than one synthesizer
 multiple octaves

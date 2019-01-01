@@ -3,7 +3,6 @@ import './App.css';
 import HeaderContainer from './containers/HeaderContainer.js';
 import BodyContainer from './containers/BodyContainer.js';
 
-
 class App extends Component {
 
   constructor (){

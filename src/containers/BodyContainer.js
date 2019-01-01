@@ -3,6 +3,7 @@ import LoginContainer from './LoginContainer.js';
 import SynthListsContainer from './SynthListsContainer.js';
 import SearchContainer from './SearchContainer.js';
 import SynthContainer from './SynthContainer.js';
+import {Route} from 'react-router-dom';
 
 
 class BodyContainer extends React.Component {
@@ -21,14 +22,17 @@ class BodyContainer extends React.Component {
     let isLoggedIn = this.props.loggedIn;
     return isLoggedIn ?
       <SynthListsContainer
-      currentUser={this.props.currentUser}
-      allSynths={this.state.allSynths}
-      savedSynths={this.state.savedSynths}
-      setView={this.props.setView}/>
+        currentUser={this.props.currentUser}
+        allSynths={this.state.allSynths}
+        savedSynths={this.state.savedSynths}
+        setView={this.props.setView}/>
       :
-      <LoginContainer
-      login={this.props.login}
-      updateUser = {this.props.updateUser}/>
+      <Route exact={true} path={'/'}
+      render={ () => {
+        return <LoginContainer
+        login={this.props.login}
+        updateUser ={this.props.updateUser}/>
+      }}/>
   }
 
   renderView = () => {
