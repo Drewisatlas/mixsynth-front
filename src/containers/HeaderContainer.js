@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, IMAGE } from 'semantic-ui-react'
-import {navLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 class HeaderContainer extends React.Component {
 
@@ -22,7 +22,14 @@ class HeaderContainer extends React.Component {
       <div>
         <div> MixSynth </div>
         {isLoggedIn?
-          <div> Hello {this.props.currentUser.username} {logout} </div>
+          <React.Fragment>
+          <div>
+            <div> Hello {this.props.currentUser.username} </div>
+            <NavLink to="/user"> My Synths </NavLink>
+            <NavLink to="/create"> Create </NavLink>
+            <div> {logout} </div>
+          </div>
+          </React.Fragment>
           :
           null
         }

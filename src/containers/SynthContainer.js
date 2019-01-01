@@ -1,6 +1,8 @@
 import React from 'react';
 import KeyboardComponent from '../components/KeyboardComponent.js';
+import SynthComponent from '../components/SynthComponent.js';
 import Envelope from 'envelope-generator';
+
 
 class SynthContainer extends React.Component {
 
@@ -20,6 +22,7 @@ class SynthContainer extends React.Component {
     }
   }
 
+
   handleOscChange = event => {
     event.persist()
     this.setState({
@@ -34,7 +37,7 @@ class SynthContainer extends React.Component {
     })
   }
 
-  handleSubmit = event => {
+  saveSynth = event => {
     event.preventDefault()
     console.log(
       `fetch posting:
@@ -97,7 +100,7 @@ class SynthContainer extends React.Component {
   }
 
   stopNote =(midiNumber) => {
-    
+
   }
 
   keyboardToggle = () => {
@@ -109,37 +112,20 @@ class SynthContainer extends React.Component {
   render (){
     return (
       <React.Fragment>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" id="name" value={this.state.name}
-            onChange={this.handleInputChange}>
-            </input>
-
-            Waveform <select id="oscillator" value={this.state.oscillator}
-            onChange={this.handleOscChange}>
-              <option value="sine">Sine</option>
-              <option value="square">Square</option>
-              <option value="sawtooth">Sawtooth</option>
-              <option value="triangle">Triangle</option>
-            </select>
-
-            Gain <input type="number" id="gain" min='0' max='1.0' step='.1'
-            value={this.state.gain} onChange={this.handleInputChange}>
-            </input>
-
-            <input type="submit" value="Save Synthesizer" />
-
-          </form>
-        </div>
+        <SynthComponent
+        handleOscChange={this.handleOscChange}
+        handleInputChange={this.handleInputChange}
+        saveSynth={this.saveSynth}
+        />
         <KeyboardComponent
           playNote={this.playNote}
           stopNote={this.stopNote}
           keyboardToggle={this.state.keyboardToggle}
         />
         <div>
-        <button onClick={this.keyboardToggle}> Toggle Keyboard </button>
+          <button onClick={this.keyboardToggle}> Toggle Keyboard </button>
         </div>
-      </React.Fragment>
+    </ React.Fragment>
     )
   }
 }

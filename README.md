@@ -15,6 +15,11 @@ full crud for synthesizers
 -update
 -delete
 two different client side routes minimum (react router)
+#login
+user
+create
+synths
+synths/id
 
 
 
