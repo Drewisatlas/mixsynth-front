@@ -12,7 +12,11 @@ class SynthContainer extends React.Component {
       oscillator: "sine",
       gain: 0.5,
       frequency: 0,
-      activeAudioNodes: {}
+      attack: 3.0 ,
+      decay: 0.4,
+      sustain: 0.5,
+      release: 0.4,
+      releaseStartTime: 6,
     }
   }
 
@@ -62,17 +66,17 @@ class SynthContainer extends React.Component {
     let envelopeModulator = ADSR(mySynth)
     envelopeModulator.connect(gainNode.gain)
 
-    envelopeModulator.attack = 0.01 // seconds
-    envelopeModulator.decay = 0.4 // seconds
-    envelopeModulator.sustain = 0.6 // multiply gain.gain.value
-    envelopeModulator.release = 0.4 // seconds
+    envelopeModulator.attack = this.state.attack // seconds
+    envelopeModulator.decay = this.state.decay // seconds
+    envelopeModulator.sustain = this.state.sustain// multiple of initial value to hold at
+    envelopeModulator.release = this.state.release// seconds
 
-    envelopeModulator.value.value = 2 // value is an AudioParam
+    envelopeModulator.value.value = 0 // value is an AudioParam
 
     envelopeModulator.start(mySynth.currentTime)
     osc1.start(mySynth.currentTime)
 
-    let stopAt = envelopeModulator.stop(mySynth.currentTime + 1)
+    let stopAt = envelopeModulator.stop(mySynth.currentTime + this.state.releaseStartTime)
     osc1.stop(stopAt)
 
   }
@@ -82,24 +86,15 @@ class SynthContainer extends React.Component {
     console.log(`midi note:${midiNumber}, ${frequency} hz`);
     this.setState ({
       frequency: frequency
+    }, () => {
+      this.buildAudioContext();
     })
-    this.buildAudioContext()
   }
 
   stopNote = (midiNumber) => {
   }
 
-
-
-
-
-  componentDidMount () {
-
-  }
-
-
   render (){
-    this.buildAudioContext()
     return (
       <React.Fragment>
         <div>

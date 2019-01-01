@@ -10,6 +10,11 @@ Skateboard
 #All users are loaded upon start of application
 #All synths are loaded at start of app
 #All saved synths are loaded at start of app
+#Users can play synths with a virtual keyboard
+#Synths can be played by clicking a keyboard
+ - enable a toggle for on the screen or with key controls or remove it
+
+
 
 logging in loads up synths
 - user synths and saved synths
@@ -20,10 +25,10 @@ logging in loads up synths
 
 navigation and urls
 
-Users can play synths with a virtual keyboard
 
 
-Synths can be played by clicking a keyboard on the screen or with key down controls.
+
+
 
 Waveforms can be filtered
 
