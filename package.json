@@ -5,6 +5,7 @@
   "dependencies": {
     "adsr": "^1.0.1",
     "adsr-envelope": "^1.0.0",
+    "envelope-generator": "^3.0.0",
     "rc-slider": "^8.6.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

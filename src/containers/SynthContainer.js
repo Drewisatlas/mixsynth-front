@@ -1,12 +1,13 @@
 import React from 'react';
 import KeyboardComponent from '../components/KeyboardComponent.js';
-var ADSR = require('adsr')
+import Envelope from 'envelope-generator';
 
 class SynthContainer extends React.Component {
 
   constructor () {
     super()
     this.state = {
+      keyboardToggle: false,
       name: "Untitled",
       creator: "username",
       oscillator: "sine",
@@ -16,7 +17,6 @@ class SynthContainer extends React.Component {
       decay: 0.4,
       sustain: 0.5,
       release: 0.4,
-      releaseStartTime: 6,
     }
   }
 
@@ -50,34 +50,39 @@ class SynthContainer extends React.Component {
   buildAudioContext = () => {
     const AudioContext = window.AudioContext || window.webkitAudioContext; // for legacy browsers
 
-    let mySynth = new AudioContext() // creates a new audio context
-
-    let osc1 = mySynth.createOscillator() //createOscillator
+    let synth1 = new AudioContext(); // creates a new audio context
+    let osc1 = synth1.createOscillator(); //createOscillator
+    let gainNode = synth1.createGain(); //create gain node
 
     osc1.frequency.value = this.state.frequency
     osc1.type = this.state.oscillator
     osc1.detune.value = 0
 
-    let gainNode = mySynth.createGain() //create gain node
+    let env = new Envelope(synth1, {
+      attackTime: this.state.attack,
+      decayTime: this.state.decay,
+      sustainLevel: this.state.sustain,
+      releaseTime: this.state.release
+    });
+
     osc1.connect(gainNode)
-    gainNode.connect(mySynth.destination)
+    gainNode.connect(synth1.destination)
     gainNode.gain.value = this.state.gain
 
-    let envelopeModulator = ADSR(mySynth)
-    envelopeModulator.connect(gainNode.gain)
+    env.connect(gainNode.gain)
 
-    envelopeModulator.attack = this.state.attack // seconds
-    envelopeModulator.decay = this.state.decay // seconds
-    envelopeModulator.sustain = this.state.sustain// multiple of initial value to hold at
-    envelopeModulator.release = this.state.release// seconds
+    let startAt = synth1.currentTime;
 
-    envelopeModulator.value.value = 0 // value is an AudioParam
+    let releaseAt = startAt + 0.5;
 
-    envelopeModulator.start(mySynth.currentTime)
-    osc1.start(mySynth.currentTime)
+    osc1.start(startAt);
+    env.start(startAt);
 
-    let stopAt = envelopeModulator.stop(mySynth.currentTime + this.state.releaseStartTime)
-    osc1.stop(stopAt)
+    env.release(releaseAt);
+
+    let stopAt = env.getReleaseCompleteTime();
+    osc1.stop(stopAt);
+    env.stop(stopAt);
 
   }
 
@@ -91,7 +96,14 @@ class SynthContainer extends React.Component {
     })
   }
 
-  stopNote = (midiNumber) => {
+  stopNote =(midiNumber) => {
+    
+  }
+
+  keyboardToggle = () => {
+    this.setState({
+      keyboardToggle: !this.state.keyboardToggle
+    })
   }
 
   render (){
@@ -122,7 +134,11 @@ class SynthContainer extends React.Component {
         <KeyboardComponent
           playNote={this.playNote}
           stopNote={this.stopNote}
+          keyboardToggle={this.state.keyboardToggle}
         />
+        <div>
+        <button onClick={this.keyboardToggle}> Toggle Keyboard </button>
+        </div>
       </React.Fragment>
     )
   }

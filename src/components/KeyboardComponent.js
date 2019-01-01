@@ -9,12 +9,12 @@ const KeyboardComponent = props => {
     first: MidiNumbers.fromNote('c3'),
     last: MidiNumbers.fromNote('f5'),
   }
-  const keyboardShortcuts = KeyboardShortcuts.create({
-      firstNote: noteRange.first,
-      lastNote: noteRange.last,
-      keyboardConfig: KeyboardShortcuts.HOME_ROW,
-  });
-
+  const keyboardShortcuts =
+    KeyboardShortcuts.create({
+        firstNote: noteRange.first,
+        lastNote: noteRange.last,
+        keyboardConfig: KeyboardShortcuts.HOME_ROW,
+    });
 
   return (
     <Piano
@@ -26,7 +26,8 @@ const KeyboardComponent = props => {
       stopNote={(midiNumber) => {
         props.stopNote(midiNumber)
       }}
-      keyboardShortcuts={keyboardShortcuts} />
+      keyboardShortcuts={ props.keyboardToggle?
+        keyboardShortcuts: null} />
   );
 }
 
