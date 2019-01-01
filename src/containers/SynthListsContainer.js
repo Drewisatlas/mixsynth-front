@@ -14,10 +14,17 @@ class SynthListsContainer extends React.Component {
   }
 
   findUserLikedSynths = () => {
-     return this.props.savedSynths.filter( synth => {
+    return this.props.savedSynths.filter( synth => {
       return synth.user_id === this.props.currentUser.id;
+    });
+  }
+
+  findSynth = (synthId) => {
+    return this.props.allSynths.find( synth => {
+      return synth.id === synthId;
     })
   }
+
 
   render (){
     return (
@@ -33,7 +40,7 @@ class SynthListsContainer extends React.Component {
           })} </ul>//loads a list of synthesizers, on click loads the selected synthesizer with saved presets
         <div>Favorite Synths</div> //loads a list of liked synthesizers, on click loads the selected synthesizer with saved presets
           <ul> {this.findUserLikedSynths().map( synth => {
-            return <li key={synth.synthesizer_id}> a liked synth </li>
+            return <li key={synth.synthesizer_id}> {this.findSynth(synth.synthesizer_id).name} </li>
           })} </ul>
       </div>
       </React.Fragment>
