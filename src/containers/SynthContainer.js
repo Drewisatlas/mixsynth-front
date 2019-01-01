@@ -22,7 +22,7 @@ class SynthContainer extends React.Component {
     }
   }
 
-
+//functions that handle changes in the synth component//
   handleOscChange = event => {
     event.persist()
     this.setState({
@@ -50,6 +50,7 @@ class SynthContainer extends React.Component {
     context.close()
   }
 
+  //generates the audio for each note played //
   buildAudioContext = () => {
     const AudioContext = window.AudioContext || window.webkitAudioContext; // for legacy browsers
 
@@ -89,6 +90,7 @@ class SynthContainer extends React.Component {
 
   }
 
+  //converts midi notes to a frequency in hz when a note is played //
   playNote = (midiNumber) => {
     let frequency = 440 * Math.pow(2,(midiNumber-69)/12);
     console.log(`midi note:${midiNumber}, ${frequency} hz`);
@@ -103,6 +105,7 @@ class SynthContainer extends React.Component {
 
   }
 
+  //toggles keyboard controls for the on screen piano //
   keyboardToggle = () => {
     this.setState({
       keyboardToggle: !this.state.keyboardToggle
