@@ -11,7 +11,6 @@ class CreateSynthContainer extends React.Component {
     this.state = {
       keyboardToggle: false,
       name: "Untitled",
-      creator: "username",
       oscillator: "sine",
       gain: 0.5,
       frequency: 0,
@@ -37,12 +36,27 @@ class CreateSynthContainer extends React.Component {
     })
   }
 
+// function that posts the synth to the database
   saveSynth = event => {
-    event.preventDefault()
-    console.log(
-      `fetch posting:
-      ${this.state.name}`
-    )
+    debugger
+    let data = {
+      name: this.state.name,
+      user_id: this.props.currentUser.id,
+      waveform: this.state.oscillator,
+      gain: this.state.gain,
+      attackTime: this.state.attack,
+      decayTime: this.state.decay,
+      sustainLevel: this.state.sustain,
+      releaseTime: this.state.release,
+    }
+
+    fetch('http://localhost:3000/synthesizers', {
+      method: "POST",
+      headers: {'Content-Type': 'application/Json'},
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then( synth => console.log(synth))
   }
 
 
@@ -119,6 +133,13 @@ class CreateSynthContainer extends React.Component {
         handleOscChange={this.handleOscChange}
         handleInputChange={this.handleInputChange}
         saveSynth={this.saveSynth}
+        name={this.state.name}
+        gain={this.state.gain}
+        attack={this.state.attack}
+        decay={this.state.decay}
+        sustain={this.state.sustain}
+        release={this.state.release}
+        releaseTime={this.state.releaseTime}
         />
         <KeyboardComponent
           playNote={this.playNote}

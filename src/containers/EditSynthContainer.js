@@ -119,6 +119,13 @@ class EditSynthContainer extends React.Component {
         handleOscChange={this.handleOscChange}
         handleInputChange={this.handleInputChange}
         saveSynth={this.saveSynth}
+        name={this.state.name}
+        gain={this.state.gain}
+        attack={this.state.attack}
+        decay={this.state.decay}
+        sustain={this.state.sustain}
+        release={this.state.release}
+        releaseTime={this.state.releaseTime}
         />
         <KeyboardComponent
           playNote={this.playNote}

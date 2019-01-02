@@ -2,10 +2,6 @@ import React from 'react';
 
 class SynthListsContainer extends React.Component {
 
-  createClickHandler = (event) => {
-    event.preventDefault();
-    return this.props.setView('create')
-  }
 
   findUserSynths = () => {
     return this.props.allSynths.filter( synth => {
@@ -29,10 +25,6 @@ class SynthListsContainer extends React.Component {
   render (){
     return (
       <React.Fragment>
-      <div>
-        <div onClick={this.createClickHandler}>Create</div> //loads a blank synth component on load
-        <div>Search</div>
-      </div>
       <div>
         <div>My Synths </div>
           <ul> {this.findUserSynths().map( synth => {

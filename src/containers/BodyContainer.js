@@ -28,7 +28,7 @@ class BodyContainer extends React.Component {
         savedSynths={this.state.savedSynths}
         setView={this.props.setView}/>
       :
-      <Route exact={true} path={'/'}
+      <Route path={'/'}
       render={ () => {
         return <LoginContainer
         login={this.props.login}
@@ -38,7 +38,9 @@ class BodyContainer extends React.Component {
 
   renderView = () => {
     if (this.props.viewMode === "create") {
-      return <Route path={'/create'} component ={CreateSynthContainer} />
+      return <Route path={'/create'} render={ () => {
+        return <CreateSynthContainer currentUser={this.props.currentUser} />
+      }} />
     } else if (this.props.viewMode === "edit"){
       return <EditSynthContainer />
     } else if (this.props.viewMode === "main"){
