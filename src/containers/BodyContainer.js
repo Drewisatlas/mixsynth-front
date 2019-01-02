@@ -15,7 +15,6 @@ class BodyContainer extends React.Component {
       allSynths: [],
       savedSynths: [],
       currentSynth: {},
-
     }
   }
 
@@ -83,6 +82,7 @@ class BodyContainer extends React.Component {
       return <Route path={'/synthesizers'} render={ () => {
         return <SearchContainer
         allSynths={this.state.allSynths}
+        allUsers={this.props.allUsers}
         />
       }} />
     } else if (this.props.viewMode === "main"){

@@ -100,6 +100,7 @@ class App extends Component {
         viewMode={this.state.viewMode}
         setViewEditSynth={this.setViewEditSynth}
         setViewUserSynths={this.setViewUserSynths}
+        allUsers={this.state.allUsers}
         />
 
       </div>
