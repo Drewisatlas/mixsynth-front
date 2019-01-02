@@ -1,14 +1,8 @@
 import React from 'react';
-import { Header, IMAGE } from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom';
 
 class HeaderContainer extends React.Component {
 
-  // loginLogout = () => {
-  //   if (this.props.loggedIn === true) {
-  //     return
-  //   }
-  // }
 
   render (){
     const isLoggedIn = this.props.loggedIn;

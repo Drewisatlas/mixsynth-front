@@ -54,11 +54,29 @@ class EditSynthContainer extends React.Component {
   }
 
   saveSynth = event => {
-    event.preventDefault()
-    console.log(
-      `fetch posting:
-      ${this.state.name}`
-    )
+    event.preventDefault();
+    let synthId = this.props.currentSynth.id;
+    let data = {
+      name: this.state.name,
+      waveform: this.state.oscillator,
+      gain: this.state.gain,
+      attackTime: this.state.attack,
+      decayTime: this.state.decay,
+      sustainLevel: this.state.sustain,
+      releaseTime: this.state.release,
+    }
+
+    fetch(`http://localhost:3000/synthesizers/${synthId}`, {
+      method: "PATCH",
+      headers: {'Content-Type': 'application/Json'},
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(updatedSynth => {
+      this.props.updateSynthInDom(updatedSynth)
+    })
+
+
   }
 
 
@@ -128,15 +146,15 @@ class EditSynthContainer extends React.Component {
     })
   }
 
-  //delete actions
+  //delete functions
 
+  //changes state to render the delete warning
   enableDeleteMode = () => {
     this.setState ({
       deleteMode: true,
     })
-
   }
-
+  //deletes the string from the dom and the database
   deleteSynth = () => {
     let synthId = this.props.currentSynth.id;
     this.props.removeSynthFromDom(synthId);
@@ -151,6 +169,7 @@ class EditSynthContainer extends React.Component {
     this.props.setViewUserSynths()
   }
 
+  // renders a delete warning
   renderWarning = () => {
     return(
       <div>
@@ -168,6 +187,7 @@ class EditSynthContainer extends React.Component {
         handleInputChange={this.handleInputChange}
         saveSynth={this.saveSynth}
         name={this.state.name}
+        oscillator={this.state.oscillator}
         gain={this.state.gain}
         attack={this.state.attack}
         decay={this.state.decay}

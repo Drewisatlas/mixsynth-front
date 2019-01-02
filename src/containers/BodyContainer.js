@@ -58,6 +58,12 @@ class BodyContainer extends React.Component {
     })
   }
 
+  updateSynthInDom = (updatedSynth) => {
+    debugger
+    this.removeSynthFromDom(updatedSynth.id);
+    this.addSynthToDom(updatedSynth);
+  }
+
   renderView = () => {
     if (this.props.viewMode === "create") {
       return <Route path={'/create'} render={ () => {
@@ -71,7 +77,14 @@ class BodyContainer extends React.Component {
       currentSynth={this.state.currentSynth}
       removeSynthFromDom={this.removeSynthFromDom}
       setViewUserSynths={this.props.setViewUserSynths}
+      updateSynthInDom={this.updateSynthInDom}
       />
+    } else if (this.props.viewMode === "search"){
+      return <Route path={'/synthesizers'} render={ () => {
+        return <SearchContainer
+        allSynths={this.state.allSynths}
+        />
+      }} />
     } else if (this.props.viewMode === "main"){
       return this.loggedIn()
     }
