@@ -130,7 +130,6 @@ class CreateSynthContainer extends React.Component {
   render (){
     return (
       <React.Fragment>
-      <h1> Create Mode </h1>
         <SynthComponent
         handleOscChange={this.handleOscChange}
         handleInputChange={this.handleInputChange}

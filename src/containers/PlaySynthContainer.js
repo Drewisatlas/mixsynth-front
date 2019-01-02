@@ -119,12 +119,6 @@ class PlaySynthContainer extends React.Component {
     })
   }
 
-
-  favoriteToggle = () => {
-    this.setState({
-      favorite: !this.state.favorite
-    })
-  }
   //adds a favorited synth to the dom and the database
   favoriteSynth = () => {
     let synthId = this.props.currentSynth.id;
@@ -134,8 +128,11 @@ class PlaySynthContainer extends React.Component {
       synthesizer_id: synthId
     }
 
+<<<<<<< HEAD
     this.favoriteToggle()
 
+=======
+>>>>>>> parent of 8215ec7... cleaned up read me with details of things to add
     console.log(`${this.props.currentUser.username} liked ${this.props.currentSynth.name}`)
 
     fetch(`http://localhost:3000/user_synthesizers`, {

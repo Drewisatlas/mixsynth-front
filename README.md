@@ -9,7 +9,7 @@ Requirements
 
 # Rails API backend
 # three resources (synths, users, saved synths)
-#full crud for synthesizers
+full crud for synthesizers
 #create
 # create container made
 # Add synth to the dom after creation
@@ -22,8 +22,13 @@ Requirements
 #delete
 #deleted from dom
 #delete from database
-#two different client side routes minimum (react router)
+two different client side routes minimum (react router)
 #login
+user
+
+synths
+synths/id
+
 
 
 Skateboard
@@ -45,22 +50,32 @@ Skateboard
 # clicking on a synth loads that synth with presets
 # Users can edit their synthesizers.
 # Users can delete their synthesizers.
-#favorited synths can not be edited.
+favorited synths can not be edited.
 
+navigation and urls
+
+DB management
+- creating an account adds a new user to the database
+search functionality
+-users can save a synth they created
+-users can edit
+
+
+
+
+
+
+synths can have effects
 
 Stretch features
-synths can have effects
+
 Users can create an account
-more precise urls for synths
-toggles the favorites button to remove favorites as well
-forward and back buttons
-Working authentication and authorization.
-search functionality
+
 search is ranked by synths that have the most likes.
 mixing more than one synthesizer
 multiple octaves
-#Synths can be played with  key down controls or midi.
-
+Synths can be played with  key down controls or midi.
+Working authentication and authorization.
 
 
 
