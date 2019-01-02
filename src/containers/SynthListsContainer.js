@@ -21,6 +21,11 @@ class SynthListsContainer extends React.Component {
     })
   }
 
+  viewSynth = (event, synth) => {
+    event.preventDefault()
+    return this.props.setCurrentSynth(synth)
+  }
+
 
   render (){
     return (
@@ -28,7 +33,7 @@ class SynthListsContainer extends React.Component {
       <div>
         <div>My Synths </div>
           <ul> {this.findUserSynths().map( synth => {
-            return <li key={synth.id}> {synth.name}</li>
+            return <li key={synth.id} onClick={(event) => this.viewSynth(event, synth)}> {synth.name}</li>
           })} </ul>//loads a list of synthesizers, on click loads the selected synthesizer with saved presets
         <div>Favorite Synths</div> //loads a list of liked synthesizers, on click loads the selected synthesizer with saved presets
           <ul> {this.findUserLikedSynths().map( synth => {

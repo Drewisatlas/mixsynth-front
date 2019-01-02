@@ -14,15 +14,22 @@ class BodyContainer extends React.Component {
     this.state = {
       allSynths: [],
       savedSynths: [],
-      currentSynth: null,
+      currentSynth: {},
 
     }
+  }
+
+  setCurrentSynth = (synth) => {
+    this.setState({
+      currentSynth: synth
+    }, this.props.setViewEditSynth())
   }
 
   loggedIn = () => {
     let isLoggedIn = this.props.loggedIn;
     return isLoggedIn ?
       <SynthListsContainer
+        setCurrentSynth={this.setCurrentSynth}
         currentUser={this.props.currentUser}
         allSynths={this.state.allSynths}
         savedSynths={this.state.savedSynths}
@@ -36,13 +43,26 @@ class BodyContainer extends React.Component {
       }}/>
   }
 
+  removeSynthFromDom = (id) => {
+    let filteredSynths = this.state.allSynths.filter( synth => {
+      return synth.id !== id;
+    })
+    this.setState({
+      allSynths: filteredSynths,
+    })
+  }
+
   renderView = () => {
     if (this.props.viewMode === "create") {
       return <Route path={'/create'} render={ () => {
         return <CreateSynthContainer currentUser={this.props.currentUser} />
       }} />
     } else if (this.props.viewMode === "edit"){
-      return <EditSynthContainer />
+      return  <EditSynthContainer
+      currentSynth={this.state.currentSynth}
+      removeSynthFromDom={this.removeSynthFromDom}
+      setViewUserSynths={this.props.setViewUserSynths}
+      />
     } else if (this.props.viewMode === "main"){
       return this.loggedIn()
     }

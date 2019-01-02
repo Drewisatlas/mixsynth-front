@@ -10,12 +10,16 @@ Requirements
 # Rails API backend
 # three resources (synths, users, saved synths)
 full crud for synthesizers
--create
+#create
 # create container made
-Save synth button posts to synthesizer
--read
+Add synth to the dom after creation
+# Save synth button posts to synthesizer
+# read existing synthesizers by clicking them in the list
+make sure non user made synths cant be edited
 -update
--delete
+#delete
+#deleted from dom
+#delete from database
 two different client side routes minimum (react router)
 #login
 user

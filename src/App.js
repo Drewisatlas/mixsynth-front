@@ -38,6 +38,13 @@ class App extends Component {
     console.log("view is changing to create mode")
   }
 
+  setViewEditSynth = () => {
+    this.setState ({
+      viewMode: "edit"
+    })
+    console.log("view is changing to edit mode")
+  }
+
   setViewUserSynths = () => {
     this.setState ({
       viewMode: "main"
@@ -91,6 +98,8 @@ class App extends Component {
         currentUser={this.state.currentUser}
         updateUser={this.updateUser}
         viewMode={this.state.viewMode}
+        setViewEditSynth={this.setViewEditSynth}
+        setViewUserSynths={this.setViewUserSynths}
         />
 
       </div>

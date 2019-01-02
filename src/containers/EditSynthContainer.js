@@ -9,6 +9,7 @@ class EditSynthContainer extends React.Component {
   constructor () {
     super()
     this.state = {
+      deleteMode: false,
       keyboardToggle: false,
       name: "Untitled",
       creator: "username",
@@ -20,6 +21,21 @@ class EditSynthContainer extends React.Component {
       sustain: 0.5,
       release: 0.4,
     }
+  }
+
+  componentDidMount () {
+    this.setState({
+      name: this.props.currentSynth.name,
+      creator: "username",
+      oscillator: this.props.currentSynth.waveform,
+      gain: this.props.currentSynth.gain,
+      frequency: 0,
+      attack: this.props.currentSynth.attackTime,
+      decay: this.props.currentSynth.decayTime,
+      sustain: this.props.currentSynth.sustainLevel,
+      release: this.props.currentSynth.releaseTime,
+    })
+    console.log(this.props.currentSynth.name)
   }
 
 //functions that handle changes in the synth component//
@@ -112,6 +128,38 @@ class EditSynthContainer extends React.Component {
     })
   }
 
+  //delete actions
+
+  enableDeleteMode = () => {
+    this.setState ({
+      deleteMode: true,
+    })
+
+  }
+
+  deleteSynth = () => {
+    let synthId = this.props.currentSynth.id;
+    this.props.removeSynthFromDom(synthId);
+    console.log('consider yourself terminated')
+
+    fetch(`http://localhost:3000/synthesizers/${synthId}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: synthId})
+    })
+
+    this.props.setViewUserSynths()
+  }
+
+  renderWarning = () => {
+    return(
+      <div>
+      Are you sure you want to delete this Synth?
+      <button onClick={this.deleteSynth}> Yes </button>
+      </div>
+    )
+  }
+
   render (){
     return (
       <React.Fragment>
@@ -135,6 +183,10 @@ class EditSynthContainer extends React.Component {
         <div>
           <button onClick={this.keyboardToggle}> Toggle Keyboard </button>
         </div>
+        <div>
+          <button onClick={this.enableDeleteMode}> Delete Synth </button>
+        </div>
+        <div>{this.state.deleteMode ? this.renderWarning() : null}</div>
     </ React.Fragment>
     )
   }
