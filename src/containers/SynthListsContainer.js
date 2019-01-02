@@ -27,7 +27,6 @@ class SynthListsContainer extends React.Component {
   }
 
   playSynth = (event, synth) => {
-    debugger
     event.preventDefault();
     this.props.playSynth(synth);
   }
