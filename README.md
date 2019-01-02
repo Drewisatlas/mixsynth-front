@@ -12,7 +12,7 @@ Requirements
 full crud for synthesizers
 #create
 # create container made
-Add synth to the dom after creation
+# Add synth to the dom after creation
 # Save synth button posts to synthesizer
 # read existing synthesizers by clicking them in the list
 make sure non user made synths cant be edited

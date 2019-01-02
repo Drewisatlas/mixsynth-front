@@ -38,7 +38,6 @@ class CreateSynthContainer extends React.Component {
 
 // function that posts the synth to the database
   saveSynth = event => {
-    debugger
     let data = {
       name: this.state.name,
       user_id: this.props.currentUser.id,
@@ -56,7 +55,9 @@ class CreateSynthContainer extends React.Component {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then( synth => console.log(synth))
+    .then( synth => {
+      this.props.addSynthToDom(synth)
+    })
   }
 
 

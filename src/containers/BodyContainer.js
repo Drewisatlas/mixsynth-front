@@ -43,6 +43,12 @@ class BodyContainer extends React.Component {
       }}/>
   }
 
+  addSynthToDom = (synth) => {
+    this.setState({
+      allSynths: [...this.state.allSynths, synth],
+    })
+  }
+
   removeSynthFromDom = (id) => {
     let filteredSynths = this.state.allSynths.filter( synth => {
       return synth.id !== id;
@@ -55,7 +61,10 @@ class BodyContainer extends React.Component {
   renderView = () => {
     if (this.props.viewMode === "create") {
       return <Route path={'/create'} render={ () => {
-        return <CreateSynthContainer currentUser={this.props.currentUser} />
+        return <CreateSynthContainer
+        currentUser={this.props.currentUser}
+        addSynthToDom={this.addSynthToDom}
+        />
       }} />
     } else if (this.props.viewMode === "edit"){
       return  <EditSynthContainer
