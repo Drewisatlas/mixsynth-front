@@ -15,15 +15,17 @@ full crud for synthesizers
 # Add synth to the dom after creation
 # Save synth button posts to synthesizer
 # read existing synthesizers by clicking them in the list
-make sure non user made synths cant be edited
--update
+
+#update
+#updates in the dom
+#updates in the database
 #delete
 #deleted from dom
 #delete from database
 two different client side routes minimum (react router)
 #login
 user
-create
+
 synths
 synths/id
 
@@ -45,10 +47,10 @@ Skateboard
 
 # logging in loads up a list of synths
 # user synths and saved synths
-- clicking on a synth loads that synth with presets
-- Users can edit their synthesizers.
-- Users can delete their synthesizers.
-- favorited synths can not be edited.
+# clicking on a synth loads that synth with presets
+# Users can edit their synthesizers.
+# Users can delete their synthesizers.
+favorited synths can not be edited.
 
 navigation and urls
 

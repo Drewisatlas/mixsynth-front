@@ -4,6 +4,7 @@ import SynthListsContainer from './SynthListsContainer.js';
 import SearchContainer from './SearchContainer.js';
 import CreateSynthContainer from './CreateSynthContainer.js';
 import EditSynthContainer from './EditSynthContainer.js';
+import PlaySynthContainer from './PlaySynthContainer.js'
 import {Route} from 'react-router-dom';
 
 
@@ -32,7 +33,9 @@ class BodyContainer extends React.Component {
         currentUser={this.props.currentUser}
         allSynths={this.state.allSynths}
         savedSynths={this.state.savedSynths}
-        setView={this.props.setView}/>
+        setView={this.props.setView}
+        playSynth={this.playSynth}
+        />
       :
       <Route path={'/'}
       render={ () => {
@@ -40,6 +43,12 @@ class BodyContainer extends React.Component {
         login={this.props.login}
         updateUser ={this.props.updateUser}/>
       }}/>
+  }
+
+  addToSavedSynths = (savedSynth) => {
+    this.setState({
+      savedSynths: [...this.state.savedSynths, savedSynth],
+    })
   }
 
   addSynthToDom = (synth) => {
@@ -58,9 +67,14 @@ class BodyContainer extends React.Component {
   }
 
   updateSynthInDom = (updatedSynth) => {
-    debugger
     this.removeSynthFromDom(updatedSynth.id);
     this.addSynthToDom(updatedSynth);
+  }
+
+  playSynth = (synth) => {
+      this.setState({
+        currentSynth: synth
+      }, this.props.setViewToPlay())
   }
 
   renderView = () => {
@@ -78,11 +92,21 @@ class BodyContainer extends React.Component {
       setViewUserSynths={this.props.setViewUserSynths}
       updateSynthInDom={this.updateSynthInDom}
       />
+    } else if (this.props.viewMode === "play"){
+      return  <PlaySynthContainer
+      currentUser={this.props.currentUser}
+      currentSynth={this.state.currentSynth}
+      removeSynthFromDom={this.removeSynthFromDom}
+      setViewUserSynths={this.props.setViewUserSynths}
+      updateSynthInDom={this.updateSynthInDom}
+      addToSavedSynths={this.addToSavedSynths}
+      />
     } else if (this.props.viewMode === "search"){
       return <Route path={'/synthesizers'} render={ () => {
         return <SearchContainer
         allSynths={this.state.allSynths}
         allUsers={this.props.allUsers}
+        playSynth={this.playSynth}
         />
       }} />
     } else if (this.props.viewMode === "main"){

@@ -1,15 +1,15 @@
 import React from 'react';
 import KeyboardComponent from '../components/KeyboardComponent.js';
-import SynthComponent from '../components/SynthComponent.js';
+import UnsaveableSynthComponent from '../components/UnsaveableSynthComponent.js';
 import Envelope from 'envelope-generator';
 
 
-class EditSynthContainer extends React.Component {
+class PlaySynthContainer extends React.Component {
 
   constructor () {
     super()
     this.state = {
-      deleteMode: false,
+      favorite: false,
       keyboardToggle: false,
       name: "Untitled",
       creator: "username",
@@ -52,31 +52,6 @@ class EditSynthContainer extends React.Component {
       [event.target.id]: event.target.value
     })
   }
-
-  saveSynth = event => {
-    event.preventDefault();
-    let synthId = this.props.currentSynth.id;
-    let data = {
-      name: this.state.name,
-      waveform: this.state.oscillator,
-      gain: this.state.gain,
-      attackTime: this.state.attack,
-      decayTime: this.state.decay,
-      sustainLevel: this.state.sustain,
-      releaseTime: this.state.release,
-    }
-
-    fetch(`http://localhost:3000/synthesizers/${synthId}`, {
-      method: "PATCH",
-      headers: {'Content-Type': 'application/Json'},
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(updatedSynth => {
-      this.props.updateSynthInDom(updatedSynth)
-    })
-  }
-
 
   closeContext = (context) => {
     context.close()
@@ -144,43 +119,34 @@ class EditSynthContainer extends React.Component {
     })
   }
 
-  //delete functions
-
-  //changes state to render the delete warning
-  enableDeleteMode = () => {
-    this.setState ({
-      deleteMode: true,
-    })
-  }
-  //deletes the string from the dom and the database
-  deleteSynth = () => {
+  //adds a favorited synth to the dom and the database
+  favoriteSynth = () => {
     let synthId = this.props.currentSynth.id;
-    this.props.removeSynthFromDom(synthId);
-    console.log('consider yourself terminated')
+    let userId = this.props.currentUser.id;
+    let data = {
+      user_id: userId,
+      synthesizer_id: synthId
+    }
 
-    fetch(`http://localhost:3000/synthesizers/${synthId}`, {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({id: synthId})
+    console.log(`${this.props.currentUser.username} liked ${this.props.currentSynth.name}`)
+
+    fetch(`http://localhost:3000/user_synthesizers`, {
+      method: "POST",
+      headers: {'Content-Type': 'application/Json'},
+      body: JSON.stringify(data)
     })
-
-    this.props.setViewUserSynths()
+    .then(response => response.json())
+    .then( savedSynth => {
+      this.props.addToSavedSynths(savedSynth)
+    })
   }
 
-  // renders a delete warning
-  renderWarning = () => {
-    return(
-      <div>
-      Are you sure you want to delete this Synth?
-      <button onClick={this.deleteSynth}> Yes </button>
-      </div>
-    )
-  }
 
   render (){
     return (
       <React.Fragment>
-        <SynthComponent
+        <h1> Play Mode </h1>
+        <UnsaveableSynthComponent
         handleOscChange={this.handleOscChange}
         handleInputChange={this.handleInputChange}
         saveSynth={this.saveSynth}
@@ -202,12 +168,12 @@ class EditSynthContainer extends React.Component {
           <button onClick={this.keyboardToggle}> Toggle Keyboard </button>
         </div>
         <div>
-          <button onClick={this.enableDeleteMode}> Delete Synth </button>
+
+          <button onClick={this.favoriteSynth}> Favorite Synth </button>
         </div>
-        <div>{this.state.deleteMode ? this.renderWarning() : null}</div>
     </ React.Fragment>
     )
   }
 }
 
-export default EditSynthContainer
+export default PlaySynthContainer

@@ -59,6 +59,12 @@ class App extends Component {
     console.log("view is changing to Search for Synths")
   }
 
+  setViewToPlay = () => {
+    this.setState ({
+      viewMode: "play"
+    })
+    console.log("view is changing to play a Synth")
+  }
 
   updateUser = (username) => {
     let user = this.state.allUsers.find(user => {
@@ -100,6 +106,7 @@ class App extends Component {
         viewMode={this.state.viewMode}
         setViewEditSynth={this.setViewEditSynth}
         setViewUserSynths={this.setViewUserSynths}
+        setViewToPlay={this.setViewToPlay}
         allUsers={this.state.allUsers}
         />
 
