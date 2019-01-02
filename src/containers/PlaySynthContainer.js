@@ -135,7 +135,7 @@ class PlaySynthContainer extends React.Component {
     }
 
     this.favoriteToggle()
-    
+
     console.log(`${this.props.currentUser.username} liked ${this.props.currentSynth.name}`)
 
     fetch(`http://localhost:3000/user_synthesizers`, {
