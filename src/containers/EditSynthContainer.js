@@ -180,6 +180,7 @@ class EditSynthContainer extends React.Component {
   render (){
     return (
       <React.Fragment>
+        <h1> Edit Mode </h1>
         <SynthComponent
         handleOscChange={this.handleOscChange}
         handleInputChange={this.handleInputChange}
