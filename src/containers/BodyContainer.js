@@ -91,6 +91,7 @@ class BodyContainer extends React.Component {
       removeSynthFromDom={this.removeSynthFromDom}
       setViewUserSynths={this.props.setViewUserSynths}
       updateSynthInDom={this.updateSynthInDom}
+      savedSynths={this.state.savedSynths}
       />
     } else if (this.props.viewMode === "play"){
       return  <PlaySynthContainer

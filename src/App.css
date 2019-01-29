@@ -26,3 +26,14 @@
   display: grid | inline;
   align-items: center;
 }
+
+.LoginView {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+}
+
+.LoginForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ECEBEB;
+}

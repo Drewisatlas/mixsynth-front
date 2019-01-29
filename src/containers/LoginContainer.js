@@ -6,19 +6,23 @@ class LoginContainer extends React.Component {
 
   render (){
     return (
-      <div>
-        <div>
-          <Login
-          login={this.props.login}
-          updateUser={this.props.updateUser}
-          />
-        </div>
-        <div>
-          <CreateAccount
+      <div className='LoginView'>
+      <div />
+        <div className='LoginForm'>
+          <div>
+            <Login
             login={this.props.login}
             updateUser={this.props.updateUser}
-          />
+            />
+          </div>
+          <div>
+            <CreateAccount
+              login={this.props.login}
+              updateUser={this.props.updateUser}
+            />
+          </div>
         </div>
+        <div />
       </div>
     )
   }

@@ -148,9 +148,20 @@ class EditSynthContainer extends React.Component {
 
   //changes state to render the delete warning
   enableDeleteMode = () => {
-    this.setState ({
-      deleteMode: true,
-    })
+    let savedSynths = this.props.savedSynths;
+    let synthId = this.props.currentSynth.id;
+
+     if (savedSynths.some( synth => synth.synthesizer_id === synthId)) {
+       this.renderDeleteDenial()
+     } else {
+       this.setState ({
+         deleteMode: true,
+       })
+     }
+  }
+
+  renderDeleteDenial = () => {
+    console.log("denied")
   }
   //deletes the string from the dom and the database
   deleteSynth = () => {

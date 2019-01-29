@@ -36,14 +36,17 @@ class CreateAccount extends React.Component {
           <input type="text" id="username"
           value={this.state.username} onChange={this.handleChange} />
         </label>
+        <br />
           <label>
             E-Mail:
             <input type="text" value={this.state.email} onChange={this.handleChange} />
           </label>
+          <br />
           <label>
             Password:
             <input type="text" value={this.state.password} onChange={this.handleChange} />
           </label>
+          <br />
           <input type="submit" value="Create Account" />
         </form>
       </div>
