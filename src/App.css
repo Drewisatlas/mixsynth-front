@@ -30,10 +30,14 @@
 .LoginView {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
+  height: 500px;
+  background-image: url('./images/dj-pic.jpg');
 }
 
 .LoginForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: #ECEBEB;
+  height:200px;
+  opacity: 0.9;
 }
