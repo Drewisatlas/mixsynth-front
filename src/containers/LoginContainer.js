@@ -9,13 +9,15 @@ class LoginContainer extends React.Component {
       <div className='LoginView'>
       <div />
         <div className='LoginForm'>
-          <div>
+          <div style={{paddingLeft: "10px"}}>
+          <h2> Login </h2>
             <Login
             login={this.props.login}
             updateUser={this.props.updateUser}
             />
           </div>
-          <div>
+          <div style={{paddingLeft: "10px"}}>
+          <h2> Create An Account </h2>
             <CreateAccount
               login={this.props.login}
               updateUser={this.props.updateUser}

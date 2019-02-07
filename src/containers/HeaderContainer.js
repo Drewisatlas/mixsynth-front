@@ -13,7 +13,7 @@ class HeaderContainer extends React.Component {
     }
 
     return (
-      <div>
+      <div style={{paddingLeft: "10px"}}>
         <h1> MixSynth </h1>
         {isLoggedIn?
           <React.Fragment>
