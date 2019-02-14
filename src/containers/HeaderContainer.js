@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import style from '../cssModules/header.module.css';
 
 class HeaderContainer extends React.Component {
 
@@ -13,7 +14,7 @@ class HeaderContainer extends React.Component {
     }
 
     return (
-      <div style={{paddingLeft: "10px"}}>
+      <div style={{paddingLeft: "10px"}} className={style.headerContainer}>
         <h1> MixSynth </h1>
         {isLoggedIn?
           <React.Fragment>
