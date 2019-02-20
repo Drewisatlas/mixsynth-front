@@ -1,0 +1,7 @@
+.textInput {
+  width: 90%;
+  padding: 6px;
+  margin-top: 3px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}

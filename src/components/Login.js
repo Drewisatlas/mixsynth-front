@@ -1,4 +1,5 @@
 import React from 'react';
+import '../cssModules/loginContainer.css'
 
 class Login extends React.Component {
 
@@ -27,15 +28,15 @@ class Login extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Username:
-            <input type="text" id="existUsername"
+            Username: <br/>
+            <input type="text" id="existUsername" className='textInput'
             value={this.state.existUsername}
             onChange={this.handleChange}/>
           </label>
           <br />
           <label>
-            Password:
-            <input type="password" id="password"
+            Password: <br/>
+            <input type="password" id="password" className='textInput'
             value={this.state.password}
             onChange={this.handleChange}/>
           </label>

@@ -32,19 +32,21 @@ class CreateAccount extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
         <label>
-          Username:
-          <input type="text" id="username"
+          Username: <br/>
+          <input type="text" id="username" className='textInput'
           value={this.state.username} onChange={this.handleChange} />
         </label>
         <br />
           <label>
-            E-Mail:
-            <input type="text" value={this.state.email} onChange={this.handleChange} />
+            E-Mail: <br/>
+            <input type="text" className='textInput'
+            value={this.state.email} onChange={this.handleChange} />
           </label>
           <br />
           <label>
-            Password:
-            <input type="text" value={this.state.password} onChange={this.handleChange} />
+            Password: <br/>
+            <input type="text" value={this.state.password} className='textInput'
+            onChange={this.handleChange} />
           </label>
           <br />
           <input type="submit" value="Create Account" />
