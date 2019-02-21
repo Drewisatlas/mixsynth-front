@@ -36,14 +36,14 @@ class SynthListsContainer extends React.Component {
     return (
       <React.Fragment>
       <div className={style.listContainer}>
-        <div>
-          <div className={style.mySynthsList}>My Synths </div>
+        <div className={style.mySynthsList}>
+          <div>My Synths </div>
             <ul> {this.findUserSynths().map( synth => {
               return <li key={synth.id} onClick={(event) => this.viewSynth(event, synth)}> {synth.name}</li>
             })}
             </ul>
         </div>
-        <div>
+        <div className={style.favoriteSynthList}>
           <div>Favorite Synths</div>
             <ul> {this.findUserLikedSynths().map( synth => {
               return <li key={synth.synthesizer_id} onClick={(event) => this.playSynth(event,this.findSynth(synth.synthesizer_id))}> {this.findSynth(synth.synthesizer_id).name} </li>
