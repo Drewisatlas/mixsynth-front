@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../cssModules/synthLists.module.css'
 
 class SynthListsContainer extends React.Component {
 
@@ -27,7 +28,6 @@ class SynthListsContainer extends React.Component {
   }
 
   playSynth = (event, synth) => {
-    debugger
     event.preventDefault();
     this.props.playSynth(synth);
   }
@@ -35,15 +35,21 @@ class SynthListsContainer extends React.Component {
   render (){
     return (
       <React.Fragment>
-      <div>
-        <div>My Synths </div>
-          <ul> {this.findUserSynths().map( synth => {
-            return <li key={synth.id} onClick={(event) => this.viewSynth(event, synth)}> {synth.name}</li>
-          })} </ul>
-        <div>Favorite Synths</div>
-          <ul> {this.findUserLikedSynths().map( synth => {
-            return <li key={synth.synthesizer_id} onClick={(event) => this.playSynth(event,this.findSynth(synth.synthesizer_id))}> {this.findSynth(synth.synthesizer_id).name} </li>
-          })} </ul>
+      <div className={style.listContainer}>
+        <div>
+          <div className={style.mySynthsList}>My Synths </div>
+            <ul> {this.findUserSynths().map( synth => {
+              return <li key={synth.id} onClick={(event) => this.viewSynth(event, synth)}> {synth.name}</li>
+            })}
+            </ul>
+        </div>
+        <div>
+          <div>Favorite Synths</div>
+            <ul> {this.findUserLikedSynths().map( synth => {
+              return <li key={synth.synthesizer_id} onClick={(event) => this.playSynth(event,this.findSynth(synth.synthesizer_id))}> {this.findSynth(synth.synthesizer_id).name} </li>
+            })}
+            </ul>
+          </div>
       </div>
       </React.Fragment>
     )
